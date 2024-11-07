@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <title>Login</title>
+    <style>
+        #first {
+            width: 65vw;
+            /* float: left; */
+             margin-top: 10vh; 
+            border-radius: 10px;
+            padding: 40px;
+            padding-left:500px;
+            background-color:white;
+            background-image: url(../static/Images/2.png);
+        }
+        .form_font {
+            font-weight: bolder;
+        }
+        input{
+            width:120%;
+        }
+        .box{
+            border-color: black;
+        }
+        .button1{
+            background-color: darkslateblue;
+            font-size:20px;
+            width:60%;
+        }
+        </style>
+</head>
+
+<body style="background-color:#2d4358;">
+    <nav class="navbar navbar-expand-lg " style="background-color:black">
+        <div class="container-fluid">
+          <a class="navbar-brand " style="color:white" href="#">OSP</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" style="color:white" aria-current="page" href={{ url_for('home') }}>Home</a>
+              </li>
+              <li style="padding-left:870px">
+               
+              </li>
+            
+            
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" style="color:white;padding-left:40px" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Login
+                </a>
+            <ul class="dropdown-menu" >
+                <li><a class="dropdown-item" href={{ url_for('login') }}>User</a></li>
+                <li><a class="dropdown-item" href={{ url_for('loginmanager') }}>Manager</a></li>
+              </ul>
+            </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" style="color:white;padding-left:50px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Signup
+                </a>
+              <ul class="dropdown-menu ">
+                <li><a class="dropdown-item" href={{ url_for('register') }}>User</a></li>
+                <li><a class="dropdown-item" href={{ url_for('registermanager') }}>Manager</a></li>
+                
+              </ul>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
+        <form method="POST" action="">
+            
+            <div class="container  d-flex align-items-center justify-content-center mx-10" id="first">
+            <div class="form-group">
+                <h1 class=" container  d-flex align-items-center justify-content-center ">Login</h1><br><br>
+                {{ form.hidden_tag() }}
+                {{form.email.label(class="form-label form_font")}} <div class="col-sm-15">{{form.email( class="form-control
+                    input-sm box" )}}</div><br>
+                {{form.password.label(class="form-label form_font")}}<div class="col-sm-15">{{ form.password( class="form-control
+                    input-sm ") }}</div>
+        </form><br>
+        {% if error %}
+        {{error}}<br>
+        {% endif %}
+        {{ form.submit(class="btn btn-primary my-3 button1" ) }}
+        <br><a href="{{ url_for('register') }}">Don't have an account? Sign Up</a>
+    </div>
+    </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

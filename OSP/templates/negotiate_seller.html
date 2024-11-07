@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.Name}}-Negotiate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <style>
+        #div1 {
+            background-size: cover;
+            height: 500px;
+            background-image: url(../static/Images/19.jpg)
+        }
+
+        .explorebutton {
+            margin-left: 620px;
+            margin-top: 440px;
+        }
+
+        .explore1 {
+            margin-bottom: 10px;
+            margin-left: 70px;
+        }
+
+
+        #ourteam {
+            height: 650px;
+
+        }
+
+
+
+
+        .column {
+            float: left;
+            width: 25%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
+        }
+
+        #footer1 {
+            height: 200px;
+        }
+
+        footer {
+            position: absolute;
+            padding-top: 150px;
+            background: black;
+
+            height: auto;
+            width: 100vw;
+            padding: 40px 0 0 0;
+        }
+
+        /*content*/
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 10px auto;
+            line-height: 28px;
+            font-size: 14px;
+        }
+
+        /*social -media*/
+        .socials {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0 3rem 0;
+        }
+
+        .socials li {
+            margin: 0 10px;
+        }
+
+        .socials a {
+            text-decoration: none;
+            color: #fff;
+            border: 1.1px solid white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .socials a i {
+            font-size: 1.1rem;
+            width: 20px;
+            transition: color .4s ease;
+        }
+
+        .socials a:hover i {
+            color: dodgerblue;
+        }
+
+        /* copyright*/
+        .footer-copyright {
+            background: #000;
+            width: 100vw;
+            padding: 20px 20px 50px 20px;
+        }
+
+        .footer-copyright p {
+            font-size: 14px;
+            word-spacing: 2px;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark"> 
+        <div class="container-fluid">
+            <a class="navbar-brand">Dashboard</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item" style="padding-left:10px;">
+                <a class="nav-link active" aria-current="page"  href="{{url_for('home_user',user=user)}}">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color:white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Want to Sell?
+                </a>
+                <ul class="dropdown-menu">
+                  <li >
+                    <a class="dropdown-item" href="{{url_for('sellproduct')}}">Upload Product</a>
+                   </li>
+                  <li><a class="dropdown-item" href="{{url_for('allproduct',id=user.User_id)}}">Update an existing Product</a></li>
+              </li>
+                  <li><a class="dropdown-item" href="{{url_for('negotiate_seller')}}">See negotiations</a></li>
+              </li></ul>
+               <li style="padding-left:100px;"></li>
+               <form action="{{ url_for('search') }}" method="POST" class="d-flex" style="width:500px;padding-right:20px;">
+                <input type="text" class="form-control me-2" name="search" placeholder="Search" style="padding-left:30px;" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+              </form>
+                <li class="nav-item" style="padding-left:100px;">
+                    <a class="nav-link active" aria-current="page" href="{{url_for('cart',user=user)}}">Cart</a>
+                </li>
+              <li style="padding-left:30px;"></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color:white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Account
+                </a>
+                <ul class="dropdown-menu">
+                  <li style="padding-left:16px">Hello {{user.Name}}</li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href={{url_for('userdetails')}}>User Details</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('viewbalance',x=0)}}">View Balance</a></li>
+                  <li><a class="dropdown-item" href={{url_for('orderstatus')}}>Order Status</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('salesstatus')}}">Sales Status</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('settings')}}">Settings</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('logout')}}">Logout</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+    <div style="height: 50px;">
+        {% if success %}
+        <div class="alert alert-warning" role="alert">
+          {{success}}
+        </div>
+        {%endif%}
+      </div>
+    <h1>Negotiation for {{product.Name}} by {{customer.Name}}(Id= {{customer.User_id}}) </h1>
+    <div class="container">
+        <table class="table  table-striped table-dark">
+            <thead>
+                <th scope="col">Sender</th>
+                <th scope="col">Message</th>
+            </thead>
+
+            <tbody>
+                {% for c in convo %}
+                <tr>
+                    {% if c.ismanager==0%}
+                    {% if c.sender_id == user.User_id %}
+                    <td scope="row">You</td>
+                    {% endif %}
+                    {% if c.sender_id == customer.User_id %}
+                    <td>Customer({{customer.Name}})</td>
+                    {% endif %}
+                    {% endif %}
+                    {% if c.ismanager==1%}
+                    <td scope="row">Manager</td>
+                    {% endif %}
+                    <td>{{c.Message }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if flag==0 %}
+        <form action="{{ url_for('send_message_seller',id=product.Pid,cid=customer.User_id) }}" method="POST" class="d-flex"
+            style="width:500px;padding-right:20px;">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Enter Message</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" cols="100"
+                    class="my-2" name="mess"></textarea>
+                <button class="btn btn-success my-2" type="submit">Send</button>
+                </div>
+                </form>
+        <form action="{{ url_for('set_final_price',id=product.Pid,cid=customer.User_id) }}" method="POST" class="d-flex"
+            style="width:500px;padding-right:20px;">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Set Final Price</label>
+                <input type="number" class="form-control" id="exampleFormControlTextarea1"
+                    class="my-2" name="price"></input>
+                <button class="btn btn-success my-2" type="submit">Set</button>
+
+            </div>
+        </form>
+        {%endif%}
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
